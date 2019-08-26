@@ -53,20 +53,6 @@ NO *pos_order(NO *arvore){
 
 	}	
 }
-/*
-void buscarElemento(NO* arvore,int valor){
-		if(arvore==NULL){
-			return NULL;
-		}
-		if( valor==arvore->valor){
-			printf("%d\n",arvore->valor);
-		}else if(valor<arvore->valor){
-			buscarElemento(arvore->esq,valor);
-		}else if(valor>arvore->valor){
-			buscarElemento(arvore->dir,valor);
-		}	
-}
-*/
 NO *remover(NO *arvore, int valor){
 	if(arvore==NULL){
 		return NULL;
@@ -108,13 +94,13 @@ NO *remover(NO *arvore, int valor){
 	}
 	return arvore;
 }	
-void *maiorElemento(NO* arvore){
+void maiorElemento(NO* arvore){
 	while (arvore->dir!=NULL){
 		arvore = arvore->dir;
 	}
 	printf("[%d]\n",arvore->valor);
 }
-void *menorElemento(NO* arvore){
+void menorElemento(NO* arvore){
 	while (arvore->esq!=NULL){
 		arvore = arvore->esq;
 	}
@@ -149,36 +135,80 @@ NO* paiElemento(NO* arvore,int valor,NO *novo){
 			novo->valor = arvore->valor;
 			arvore->esq = paiElemento(arvore->esq,valor,novo);
 		}else{
-			printf("%d\n",novo->valor);
+			printf("[%d]",novo->valor);
 		}
 	
 	}
 }
-int menor(NO* arv){
-	while (arv->esq!=NULL){
-		arv = arv->esq;
-	}
-	return (arv->valor);
-}	
 
-NO *antecessor(NO* arvore,int valor,NO* arv){
-
-	/*if(valor==menor(arvore)){
-		printf("-1");
-		exit(0);
-	
-	}
-	else*/ 
-	if(arvore!=NULL){
-		arvore->esq = antecessor(arvore->esq,valor,arv);
-		if(arvore->valor==valor){
-			printf("%d\n",arv->valor);
-			exit(0);
+int antecessor(NO* arvore,int valor,NO* arv){
+	if(arvore==NULL){
+		return -1;
+	}else if(arvore!=NULL){
+		if(valor< arvore->valor){
+			antecessor(arvore->esq,valor,arv);
 		}
-		arv->valor = arvore->valor;
-		printf("Auxiliar  %d\n",arv->valor);				
-		arvore->dir = antecessor(arvore->dir,valor,	arv);
-	
+		else if(valor> arvore->valor){
+			if (arvore->valor > arv->valor){
+				arv->valor = arvore->valor;	
+			}
+			antecessor(arvore->dir,valor,arv);
+		}else{
+			if(arvore->esq == NULL){
+				return arv->valor;
+			}else {
+				if(arv->valor > arvore->esq->valor){
+					return arv->valor;
+				}else{
+					arvore =arvore->esq;
+					while (arvore->dir!=NULL){
+						arvore = arvore->dir;
+					}
+					return arvore->valor;
+				}
+			}
+		}
+
+	}
+}
+int sucessor(NO * arvore,int valor, NO *arv){
+	if(arvore==NULL){
+		return -1;
+	}else{
+
+		if(arv->valor < valor){
+			arv->valor = arvore->valor;
+		}
+		if(valor<arvore->valor){
+			if(arvore->valor < arv->valor){
+				arv->valor = arvore->valor;
+			}
+			 sucessor(arvore->esq,valor,arv);
+		}else if(valor>arvore->valor){
+			sucessor(arvore->dir,valor,arv);
+		}else{
+			if(arvore->dir == NULL && arv->valor <= valor){
+				return -1;
+			}else if(arvore->dir == NULL){
+				return arv->valor;
+			}else if(arv->valor <= valor){
+				arvore = arvore->dir;
+				while (arvore->esq!=NULL){
+					arvore = arvore->esq;
+				}
+				return arvore->valor;
+			}else{
+				if (arvore->dir->valor < arv->valor){
+				arvore = arvore->dir;
+					while (arvore->esq!=NULL){
+						arvore = arvore->esq;
+					}
+				return arvore->valor;
+				} else{
+					return arv->valor;
+				}
+			}
+		}
 	}
 }
 
