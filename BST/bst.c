@@ -49,7 +49,7 @@ NO *pos_order(NO *arvore){
 	if(arvore!=NULL){
 		pos_order(arvore->esq);
 		pos_order(arvore->dir);
-		printf("%d\n",arvore->valor);
+		printf("[%d]",arvore->valor);
 
 	}	
 }

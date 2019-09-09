@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include<string.h>
-#include "bst.c"
 #include "bst.h"
 
 int main(int argc, int argv []){
@@ -15,12 +14,12 @@ int main(int argc, int argv []){
 		scanf("%d",&opcoes);
 		switch (opcoes){
 
-		case 1:
+		case 2:
 			scanf("%d",&n);
 		 	raiz = inserir(raiz,n);
 			break;
 
-		case 2:
+		case 1:
 			pre_order(raiz);
 			break;
 
@@ -32,7 +31,7 @@ int main(int argc, int argv []){
 			pos_order(raiz);
 			break;
 
-		case 5:
+		case 8:
 			scanf("%d",&n);
 			remover(raiz,n);
 			break;
@@ -43,8 +42,8 @@ int main(int argc, int argv []){
 		case 7:
 			menorElemento(raiz);
 			break;
-		case 8:
-			printf("[%d]",alturaArvore(raiz));
+		case 5:
+			printf("%d",alturaArvore(raiz));
 			break;
 
 		case 9:
