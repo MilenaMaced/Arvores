@@ -11,8 +11,15 @@ typedef struct no {
 
 no * inserir (no* raiz, tipo_dado elemento, int *cresceu);
 
-no* rotacionar(no* pivo);
+
 no* rotacao_simples_direita(no* pivo);
+no* rotacao_simples_esquerda(no* p);
+no* rotacao_simples_esquerda_caso_remocao(no *p);
+no* rotacao_simples_direita_caso_remocao(no *p);
+no * rotacao_dupla_direita(no *p);
+no * rotacao_dupla_esquerda(no* p);
+
+no* rotacionar(no* pivo);
 
 void preorder(no* raiz);
 void inorder(no* raiz);

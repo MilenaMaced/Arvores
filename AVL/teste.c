@@ -22,23 +22,13 @@ int main(int argc, char *argv[]) {
                 preorder(arvore);
                 printf("\n");                    
                 break;
-                
+
             case 3:
-                inorder(arvore);                    
-                printf("\n");
-                break;
-            
-            case 4:
-                posorder(arvore);                    
-                printf("\n");
-                break;
-            
-            case 5:
                 scanf("%d", &n);
                 arvore = remover(arvore, n, &flag);
                 break;
             
-            case 99:
+            case 999:
                 exit(0);
         }    
     }
